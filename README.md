@@ -1,7 +1,7 @@
 # axelrod-py
-h2. Reproduction of Robert Axelrod's first game theory simulation in Python
+Reproduction of Robert Axelrod's first game theory simulation in Python
 
-The idea is to pit different algorithms against eac other in an interative prisoner's dilemma. 
+The idea is to pit different algorithms against each other in an iterative prisoner's dilemma. 
 Each pair of algorithms is played 1000 times consecutively. Algorithms are also played against themselves.
 After each run, a list of scores is printed out.
 
