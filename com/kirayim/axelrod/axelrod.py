@@ -32,12 +32,12 @@ def runGames():
             previousChoice1 = None
             previousChoice2 = None
             previousPayoff1 = previousPayoff2 = None
-            for step in range(0, 1000):
+            for step in range(0, 10000):
                 currentChoice1 = module1.play(previousChoice2, previousPayoff1)
                 currentChoice2 = module2.play(previousChoice1, previousPayoff2)
 
                 score = payoff[currentChoice1][currentChoice2]
-                logging.debug("Game {} Choices {}, {}, Scores {}".format(step, currentChoice1, currentChoice2, score))
+                #logging.debug("Game {} Choices {}, {}, Scores {}".format(step, currentChoice1, currentChoice2, score))
                 previousChoice1, previousChoice2 = currentChoice1, currentChoice2
                 scores[name1] = previousPayoff1 = scores[name1] + score[0]
                 scores[name2] = previousPayoff2 = scores[name2] + score[1]
