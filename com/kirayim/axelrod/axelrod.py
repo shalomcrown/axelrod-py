@@ -27,20 +27,26 @@ def runGames():
 
     for name1,module1 in modules.iteritems():
         for name2, module2 in modules.iteritems():
-            logging.debug( "Game between {} and {}".format(name1, name2))
+            #logging.debug( "Game between {} and {}".format(name1, name2))
 
-            previousChoice1 = None
-            previousChoice2 = None
+            previousChoice1 = previousChoice2 = None
             previousPayoff1 = previousPayoff2 = None
-            for step in range(0, 10000):
+            gameScore1 = gameScore2 = 0
+            for step in range(0, 1000):
                 currentChoice1 = module1.play(previousChoice2, previousPayoff1)
                 currentChoice2 = module2.play(previousChoice1, previousPayoff2)
 
                 score = payoff[currentChoice1][currentChoice2]
                 #logging.debug("Game {} Choices {}, {}, Scores {}".format(step, currentChoice1, currentChoice2, score))
                 previousChoice1, previousChoice2 = currentChoice1, currentChoice2
-                scores[name1] = previousPayoff1 = scores[name1] + score[0]
-                scores[name2] = previousPayoff2 = scores[name2] + score[1]
+                previousPayoff1 = score[0]
+                previousPayoff2 = score[1]
+                gameScore1 = gameScore1 + score[0]
+                gameScore2 = gameScore2 + score[1]
+                scores[name1] = scores[name1] + score[0]
+                scores[name2] = scores[name2] + score[1]
+            logging.debug( "Game between {} and {}: Scores {}, {}".format(name1, name2, gameScore1, gameScore2))
+
 
 def printResults():
     sortedScores =  reversed(sorted(scores.items(), key=lambda p:p[1]))
